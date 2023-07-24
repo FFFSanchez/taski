@@ -1,5 +1,5 @@
 # FFF Taski
-Приложение Приложение для планирования своих задач. Имеет фронтенд часть на React и backend на Django. Развернут на Yandex Cloud с помощью gunicorn и nginx.
+Приложение Приложение для планирования своих задач. Имеет фронтенд частПриложение для планирования своих задач. Имеет фронтенд часть на React и backend на Django. Развернут на Yandex Cloud с помощью gunicorn и nginx.
 Адрес: https://bigbobs.bounceme.net/
 
 ## По проблемам и вопросам запуска писать на https://t.me/lordsanchez
