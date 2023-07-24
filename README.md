@@ -1,4 +1,4 @@
-# Pussygramix
+# FFF Taski
 Приложение Приложение для планирования своих задач.
 Имеет фронтенд часть на React и backend на Django.
 Развернут на Yandex Cloud с помощью gunicorn и nginx.
