@@ -1,34 +1,32 @@
 # FFF Taski
-Приложение для планирования своих задач.
-Имеет фронтенд часть на React и backend на Django.
-Развернут на Yandex Cloud с помощью gunicorn и nginx.
-Адрес: https://bigbobs.bounceme.net/
+РџСЂРёР»РѕР¶РµРЅРёРµ РґР»СЏ РїР»Р°РЅРёСЂРѕРІР°РЅРёСЏ СЃРІРѕРёС… Р·Р°РґР°С‡.
+РРјРµРµС‚ С„СЂРѕРЅС‚РµРЅРґ С‡Р°СЃС‚СЊ РЅР° React Рё backend РЅР° Django.
 
-## По проблемам и вопросам запуска писать на https://t.me/lordsanchez
-### Как развернуть проект у себя на сервере:
-__Протестировано на Linux Ubuntu 22.04.1 LTS__
+## РџРѕ РїСЂРѕР±Р»РµРјР°Рј Рё РІРѕРїСЂРѕСЃР°Рј Р·Р°РїСѓСЃРєР° РїРёСЃР°С‚СЊ РЅР° https://t.me/lordsanchez
+### РљР°Рє СЂР°Р·РІРµСЂРЅСѓС‚СЊ РїСЂРѕРµРєС‚ Сѓ СЃРµР±СЏ РЅР° СЃРµСЂРІРµСЂРµ:
+__РџСЂРѕС‚РµСЃС‚РёСЂРѕРІР°РЅРѕ РЅР° Linux Ubuntu 22.04.1 LTS__
 
-+ Клонировать репозиторий на сервер (дефолт ветка main):
++ РљР»РѕРЅРёСЂРѕРІР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РЅР° СЃРµСЂРІРµСЂ (РґРµС„РѕР»С‚ РІРµС‚РєР° main):
 ```
 git clone https://github.com/FFFSanchez/taski.git
 ```
-+ Cоздать и активировать виртуальное окружение, установить зависимости:
++ CРѕР·РґР°С‚СЊ Рё Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РІРёСЂС‚СѓР°Р»СЊРЅРѕРµ РѕРєСЂСѓР¶РµРЅРёРµ, СѓСЃС‚Р°РЅРѕРІРёС‚СЊ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё:
 ```
 python3 -m venv env
 source venv/Scripts/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
-+ Выполнить миграции и создать суперюзера:
++ Р’С‹РїРѕР»РЅРёС‚СЊ РјРёРіСЂР°С†РёРё Рё СЃРѕР·РґР°С‚СЊ СЃСѓРїРµСЂСЋР·РµСЂР°:
 ```
 python manage.py migrate
 python manage.py createsuperuser
 ```
-+ Отредактировать ALLOWED_HOSTS в settings.py
++ РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ ALLOWED_HOSTS РІ settings.py
 ```
-ALLOWED_HOSTS = ['ip вашего сервера', '127.0.0.1', 'localhost', 'ваш_домен']
+ALLOWED_HOSTS = ['ip РІР°С€РµРіРѕ СЃРµСЂРІРµСЂР°', '127.0.0.1', 'localhost', 'РІР°С€_РґРѕРјРµРЅ']
 ```
-+ Выключить Debug в settings.py, задать константы и собрать статику
++ Р’С‹РєР»СЋС‡РёС‚СЊ Debug РІ settings.py, Р·Р°РґР°С‚СЊ РєРѕРЅСЃС‚Р°РЅС‚С‹ Рё СЃРѕР±СЂР°С‚СЊ СЃС‚Р°С‚РёРєСѓ
 ```
 DEBUG = False
 STATIC_URL = 'static_backend'
@@ -36,49 +34,49 @@ STATIC_ROOT = BASE_DIR / 'static_backend'
 
 python3 manage.py collectstatic
 ```
-+ Скопировать директорию static_backend/ в директорию /var/www/название_проекта/:
++ РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РґРёСЂРµРєС‚РѕСЂРёСЋ static_backend/ РІ РґРёСЂРµРєС‚РѕСЂРёСЋ /var/www/РЅР°Р·РІР°РЅРёРµ_РїСЂРѕРµРєС‚Р°/:
 ```
-sudo cp -r путь_к_директории_с_бэкендом/static_backend /var/www/название_проекта
+sudo cp -r РїСѓС‚СЊ_Рє_РґРёСЂРµРєС‚РѕСЂРёРё_СЃ_Р±СЌРєРµРЅРґРѕРј/static_backend /var/www/РЅР°Р·РІР°РЅРёРµ_РїСЂРѕРµРєС‚Р°
 ```
-+ Собрать фронт и скопировать статику(из директории frontend)
++ РЎРѕР±СЂР°С‚СЊ С„СЂРѕРЅС‚ Рё СЃРєРѕРїРёСЂРѕРІР°С‚СЊ СЃС‚Р°С‚РёРєСѓ(РёР· РґРёСЂРµРєС‚РѕСЂРёРё frontend)
 ```
 npm i
 npm run build
-sudo cp -r путь_к_директории_с_фронтенд-приложением/build/. /var/www/имя_проекта/
+sudo cp -r РїСѓС‚СЊ_Рє_РґРёСЂРµРєС‚РѕСЂРёРё_СЃ_С„СЂРѕРЅС‚РµРЅРґ-РїСЂРёР»РѕР¶РµРЅРёРµРј/build/. /var/www/РёРјСЏ_РїСЂРѕРµРєС‚Р°/
 ```
-+ Установить и настроить gunicorn
++ РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Рё РЅР°СЃС‚СЂРѕРёС‚СЊ gunicorn
 ```
 pip install gunicorn
-sudo nano /etc/systemd/system/gunicorn_название_проекта.service
+sudo nano /etc/systemd/system/gunicorn_РЅР°Р·РІР°РЅРёРµ_РїСЂРѕРµРєС‚Р°.service
 ```
-#### в конфиге gunicorn
+#### РІ РєРѕРЅС„РёРіРµ gunicorn
 ```
 [Unit]
 Description=gunicorn daemon
 After=network.target
 [Service]
-User=имя_пользователя_в_системе
-WorkingDirectory=/home/имя_пользователя/папка_с_проектом/папка_с_файлом_manage.py/
+User=РёРјСЏ_РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ_РІ_СЃРёСЃС‚РµРјРµ
+WorkingDirectory=/home/РёРјСЏ_РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ/РїР°РїРєР°_СЃ_РїСЂРѕРµРєС‚РѕРј/РїР°РїРєР°_СЃ_С„Р°Р№Р»РѕРј_manage.py/
 ExecStart=/.../venv/bin/gunicorn --bind 0.0.0.0:8000 kittygram_backend.wsgi:application
 [Install]
 WantedBy=multi-user.target
 ```
-+ Активировать gunicorn
++ РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ gunicorn
 ```
-sudo systemctl start gunicorn_название_проекта
-sudo systemctl enable gunicorn_название_проекта
+sudo systemctl start gunicorn_РЅР°Р·РІР°РЅРёРµ_РїСЂРѕРµРєС‚Р°
+sudo systemctl enable gunicorn_РЅР°Р·РІР°РЅРёРµ_РїСЂРѕРµРєС‚Р°
 ```
-+ Установить и настроить Nginx
++ РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Рё РЅР°СЃС‚СЂРѕРёС‚СЊ Nginx
 ```
 sudo apt install nginx -y
 sudo systemctl start nginx
 sudo nano /etc/nginx/sites-enabled/default
 ```
-#### В конфиге Nginx
+#### Р’ РєРѕРЅС„РёРіРµ Nginx
 ```
 server {
 	listen 80;
-	server_name ваш_домен;
+	server_name РІР°С€_РґРѕРјРµРЅ;
 	location /api/ {
 		proxy_pass http://127.0.0.1:8000;
 	}
@@ -86,7 +84,7 @@ server {
 		proxy_pass http://127.0.0.1:8000;
 	}
 	location / {
-		root /var/www/имя_проекта;
+		root /var/www/РёРјСЏ_РїСЂРѕРµРєС‚Р°;
 		index index.html index.htm;
 		try_files $uri /index.html;
 	}
@@ -96,6 +94,6 @@ server {
 sudo systemctl reload nginx
 ```
 
-+ ## Проект запущен и доступен по вашему dns или ip.
++ ## РџСЂРѕРµРєС‚ Р·Р°РїСѓС‰РµРЅ Рё РґРѕСЃС‚СѓРїРµРЅ РїРѕ РІР°С€РµРјСѓ dns РёР»Рё ip.
 
-#### Автор: Санчез Трифонов
+#### РђРІС‚РѕСЂ: РЎР°РЅС‡РµР· РўСЂРёС„РѕРЅРѕРІ
